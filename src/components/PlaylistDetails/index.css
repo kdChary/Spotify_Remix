@@ -42,7 +42,7 @@
   font-weight: 600;
 
   letter-spacing: 0.6px;
-  margin-top: 0;
+  margin: 0;
 }
 .playlist-title-lg {
   letter-spacing: 0.6px;
@@ -56,9 +56,22 @@
   justify-content: flex-end;
 }
 .playlist-head-text {
-  font-family: 'inter';
+  /* font-family: 'inter'; */
   font-size: 13px;
   font-weight: 500;
+
+  /* color: #94a3b8; */
+  font-style: oblique;
+  letter-spacing: 0.7px;
+}
+.playlist-head-text-sm {
+  font-size: 13px;
+  font-weight: 600;
+  font-style: oblique;
+
+  color: #94a3b8;
+  margin: 2px 0;
+  letter-spacing: 0.6px;
 }
 @media (min-width: 768px) {
   .playlist-header {
@@ -77,4 +90,17 @@
   .playlist-details-lg {
     display: flex;
   }
+  .playlist-head-text-sm {
+    display: none;
+  }
+}
+
+.songs-list {
+  width: 100%;
+  display: block;
+  padding: 0;
+
+  overflow: auto;
+  scrollbar-color: dark;
+  scroll-behavior: smooth;
 }

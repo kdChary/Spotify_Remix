@@ -4,6 +4,9 @@ import Cookies from 'js-cookie'
 import './index.css'
 import Header from '../Header'
 import BackBtn from '../BackBtn'
+import Loading from '../LoadingView'
+import Failure from '../FailurePage'
+import PlaylistItem from '../PlaylistsItem'
 
 const apiStateConst = {
   initial: 'INITIAL',
@@ -13,7 +16,7 @@ const apiStateConst = {
 }
 
 class PlaylistDetails extends Component {
-  state = {playListData: {}, fetchStatus: apiStateConst.initial}
+  state = {playListData: {}, tracks: [], fetchStatus: apiStateConst.initial}
 
   componentDidMount() {
     this.getSpecificPlaylist()
@@ -39,6 +42,7 @@ class PlaylistDetails extends Component {
   modifyTracks = item => ({
     id: item.track.id,
     name: this.changeName(item.track.name),
+    artist: item.track.artists[0].name,
     duration: this.convertDuration(item.track.duration_ms),
     previewUrl: item.track.preview_url,
     popularity: item.track.popularity,
@@ -71,19 +75,71 @@ class PlaylistDetails extends Component {
         tracks: data.tracks.items.map(track => this.modifyTracks(track)),
       }
 
+      const songsList = modifyData.tracks
+
       this.setState({
         playListData: modifyData,
         fetchStatus: apiStateConst.success,
+        tracks: songsList,
       })
-      console.log(data)
+
+      console.log(modifyData)
     } else {
       this.setState({fetchStatus: apiStateConst.failure})
     }
   }
 
-  render() {
-    const {playListData} = this.state
+  renderSuccessView = () => {
+    const {playListData, tracks} = this.state
     const {name, image} = playListData
+
+    return (
+      <>
+        <div className="playlist-header">
+          <img
+            src={image}
+            alt="featured playlist"
+            className="playlist-head-img"
+          />
+          <h3 className="playlist-title">{name}</h3>
+          <p className="playlist-head-text-sm"> KSD </p>
+
+          <div className="playlist-details-lg">
+            <p className="playlist-head-text"> Editor&#39;s Picks</p>
+
+            <h1 className="playlist-title-lg">{name}</h1>
+
+            <p className="playlist-head-text"> KSD </p>
+          </div>
+        </div>
+        <ul className="songs-list">
+          {tracks.map(track => (
+            <PlaylistItem key={track.id} songData={track} />
+          ))}
+        </ul>
+      </>
+    )
+  }
+
+  renderPlaylistDetails = () => {
+    const {fetchStatus} = this.state
+
+    switch (fetchStatus) {
+      case apiStateConst.inProgress:
+        return <Loading />
+
+      case apiStateConst.success:
+        return <>{this.renderSuccessView()}</>
+
+      case apiStateConst.failure:
+        return <Failure method={this.retry} />
+
+      default:
+        return null
+    }
+  }
+
+  render() {
     return (
       <>
         <Header />
@@ -92,19 +148,7 @@ class PlaylistDetails extends Component {
           data-testid="specificPlaylistDetails"
         >
           <BackBtn />
-          <div className="playlist-header">
-            <img
-              src={image}
-              alt="featured playlist"
-              className="playlist-head-img"
-            />
-            <h3 className="playlist-title">{name}</h3>
-            <div className="playlist-details-lg">
-              <p className="playlist-head-text"> Editor&#39;s Picks</p>
-              <h1 className="playlist-title-lg">{name}</h1>
-              <p className="playlist-head-text"> KSD </p>
-            </div>
-          </div>
+          {this.renderPlaylistDetails()}
         </div>
       </>
     )
