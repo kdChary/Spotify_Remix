@@ -6,6 +6,7 @@ import SafeRoute from './components/ProtectedRoute'
 import Home from './components/HomePage'
 import NotFound from './components/NotFound'
 import CategoryPlaylist from './components/GenreAndMoods'
+import PlaylistDetails from './components/PlaylistDetails'
 
 // write your code here
 const App = () => (
@@ -17,6 +18,7 @@ const App = () => (
       path="/category/:id/:playlists"
       component={CategoryPlaylist}
     />
+    <SafeRoute exact path="/playlist/:id" component={PlaylistDetails} />
     <SafeRoute exact path="/bad-path" component={NotFound} />
     <Redirect to="/bad-path" />
   </Switch>
