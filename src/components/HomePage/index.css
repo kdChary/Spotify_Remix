@@ -1,0 +1,44 @@
+.home-page {
+  background-color: #181818;
+  height: 90vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow: auto;
+  scrollbar-color: dark;
+  scroll-behavior: smooth;
+
+  font-family: 'Assistant';
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.playlist-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.playlist-heading {
+  color: #ffffff;
+  letter-spacing: 0.6px;
+  margin-bottom: 3px;
+  margin-left: 7px;
+}
+@media (min-width: 768px) {
+  .home-page {
+    width: 90%;
+    height: 100vh;
+    position: relative;
+    right: 0;
+    left: 10vw;
+  }
+}
+
+.home-page::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}

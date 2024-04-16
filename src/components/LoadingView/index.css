@@ -1,0 +1,13 @@
+.loading-text {
+  color: #ffffff;
+}
+
+.loader-view {
+  width: 100%;
+  /* height: 90vh; */
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

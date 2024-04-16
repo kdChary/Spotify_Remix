@@ -1,0 +1,31 @@
+.back-btn {
+  border: none;
+  background-color: transparent;
+
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  align-self: flex-start;
+
+  position: absolute;
+  top: 10px;
+  left: 5px;
+
+  font-family: 'Inter';
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+}
+.back-btn:hover {
+  font-weight: 600;
+  letter-spacing: 0.03rem;
+  color: #1db94f;
+  gap: 7px;
+  left: 0;
+  justify-content: flex-end;
+}
+@media (max-width: 767px) {
+  .back-btn {
+    display: none;
+  }
+}

@@ -1,0 +1,26 @@
+.editors-pick {
+  width: 100%;
+  height: 210px;
+  padding: 0;
+
+  display: flex;
+  /* gap: 5px; */
+  flex-wrap: wrap;
+
+  overflow: auto;
+  scroll-behavior: unset;
+  font-family: 'Inter';
+  color: #fcffff;
+  padding: 3px;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+@media (min-width: 768px) {
+  .editors-pick {
+    height: 270px;
+  }
+}
+.editors-pick::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
