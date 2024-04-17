@@ -1,0 +1,188 @@
+.playlist-footer {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #181818;
+  border-top: solid 1px #94a3b8;
+  border-radius: 15px 15px 0 0;
+
+  padding: 0 13px;
+  position: fixed;
+  bottom: 0;
+
+  color: #fff;
+}
+@media (min-width: 768px) {
+  .playlist-footer {
+    width: 90.5%;
+    height: 15vh;
+    margin: 0;
+    padding: 11px;
+  }
+  .song-headings {
+    display: flex;
+  }
+  .line {
+    display: block;
+  }
+}
+.songs-container {
+  width: 100%;
+  padding: 0 5px;
+}
+.song-header {
+  display: flex;
+  gap: 5px;
+  /* border: solid 1px #fff; */
+}
+
+.song-img {
+  display: none;
+  width: 83px;
+  height: 83px;
+}
+.song-artist {
+  font-size: 13px;
+  font-weight: 600;
+  font-style: oblique;
+
+  color: #94a3b8;
+  margin: 2px 0;
+  letter-spacing: 0.6px;
+}
+.footer-song-name {
+  font-size: 13px;
+  font-weight: 600;
+  font-style: oblique;
+
+  color: #ffffff;
+  margin: 2px 0;
+  letter-spacing: 0.6px;
+}
+.playing-song-details {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+@media (min-width: 768px) {
+  .song-img {
+    display: inline-block;
+    border: none;
+
+    border-radius: 4px;
+  }
+}
+
+/* Styling Audio Player */
+.media-player {
+  /* width: 50%; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 5vw;
+}
+.play-pause-btn {
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+
+  width: 33px;
+  height: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 17px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+.play {
+  position: relative;
+  left: 2.1px;
+}
+.song-controls {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.volume-controls {
+  width: 20%;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+}
+/* Styling Song and Volume Bar */
+.progress {
+  display: none;
+  appearance: none;
+  background: #12f911;
+
+  width: 310px;
+  height: 3px;
+  border: none;
+  border-radius: 5px;
+
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+}
+.volume {
+  width: 98px;
+}
+.progress::-webkit-slider-thumb {
+  appearance: none;
+  background: #12f911;
+  height: 15px;
+  width: 15px;
+  border: solid 3px #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 3px rgb(144, 218, 218);
+}
+/* .progress::before {
+  content: '';
+
+  height: 3px;
+  width: 0;
+  background-color: #12f911;
+
+  position: absolute;
+  /* top: 0;
+  left: 0; */
+/*  z-index: 2;
+  border-radius: 5px;
+} */
+/* .progress:active */
+/* Adding Hovering effects */
+.play-pause-btn:hover {
+  color: #11eaff;
+}
+.progress::-webkit-slider-thumb:hover {
+  width: 17px;
+  height: 17px;
+  border: solid 3px #12f911;
+  background-color: #8df78d;
+}
+@media (min-width: 768px) {
+  .footer-song-name {
+    font-size: 17px;
+  }
+  .play-pause-btn {
+    background-color: #ffffff;
+    color: #1a2b3a;
+  }
+  .progress {
+    display: inline-flex;
+  }
+  .media-player {
+    width: 60%;
+  }
+  .volume-controls {
+    display: flex;
+  }
+}
