@@ -20,13 +20,21 @@ class NewReleases extends Component {
     this.getNewReleases()
   }
 
+  changeName = val => {
+    const indx = val.indexOf('(')
+    if (indx > 0) {
+      return val.slice(0, indx)
+    }
+    return val
+  }
+
   retry = () => {
     this.getNewReleases()
   }
 
   modifyData = data => ({
     id: data.id,
-    name: data.name,
+    name: this.changeName(data.name),
     imageUrl: data.images[0].url,
   })
 

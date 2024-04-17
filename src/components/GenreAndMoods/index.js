@@ -23,6 +23,14 @@ class CategoryPlaylist extends Component {
     this.getCategoryPlaylist()
   }
 
+  changeName = val => {
+    const indx = val.indexOf('(')
+    if (indx > 0) {
+      return val.slice(0, indx)
+    }
+    return val
+  }
+
   getCategoryPlaylist = async () => {
     this.setState({fetchStatus: apiStatConst.inProgress})
     const token = Cookies.get('jwt_token')
@@ -51,7 +59,7 @@ class CategoryPlaylist extends Component {
 
       const modifyCategories = lists.map(eachItem => ({
         id: eachItem.id,
-        name: eachItem.name,
+        name: this.changeName(eachItem.name),
         imageUrl: eachItem.images[0].url,
         tracks: eachItem.tracks.total,
       }))

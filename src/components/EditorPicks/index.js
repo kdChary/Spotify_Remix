@@ -20,9 +20,17 @@ class EditorPicks extends Component {
     this.getCategoriesPicks()
   }
 
+  changeName = val => {
+    const indx = val.indexOf('(')
+    if (indx > 0) {
+      return val.slice(0, indx)
+    }
+    return val
+  }
+
   modifyData = data => ({
     id: data.id,
-    name: data.name,
+    name: this.changeName(data.name),
     imageUrl: data.images[0].url,
   })
 

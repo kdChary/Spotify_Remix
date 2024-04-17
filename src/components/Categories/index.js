@@ -21,9 +21,17 @@ class Categories extends Component {
     this.getEditorPicks()
   }
 
+  changeName = val => {
+    const indx = val.indexOf('(')
+    if (indx > 0) {
+      return val.slice(0, indx)
+    }
+    return val
+  }
+
   modifyData = data => ({
     id: data.id,
-    name: data.name,
+    name: this.changeName(data.name),
     imageUrl: data.icons[0].url,
   })
 

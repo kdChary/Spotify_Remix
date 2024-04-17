@@ -98,7 +98,7 @@ class PlaylistDetails extends Component {
         tracks: songsList,
       })
 
-      console.log(data)
+      //   console.log(data)
     } else {
       this.setState({fetchStatus: apiStateConst.failure})
     }

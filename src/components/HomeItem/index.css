@@ -41,3 +41,9 @@
     margin-top: 3.5px;
   }
 }
+
+@media (min-width: 375px) and (max-width: 412px) {
+  .home-item {
+    width: 85px;
+  }
+}
