@@ -3,6 +3,9 @@ import Cookies from 'js-cookie'
 
 import './index.css'
 import Header from '../Header'
+import BackBtn from '../BackBtn'
+import Loading from '../LoadingView'
+import Failure from '../FailurePage'
 
 const apiStateConst = {
   initial: 'INITIAL',
@@ -39,7 +42,29 @@ class Album extends Component {
 
     if (response.ok) {
       const data = await response.json()
+
+      this.setState({fetchStatus: apiStateConst.success})
       console.log(data)
+    } else {
+      this.setState({fetchStatus: apiStateConst.failure})
+    }
+  }
+
+  renderSuccessView = () => {
+    const {fetchStatus} = this.state
+
+    switch (fetchStatus) {
+      case apiStateConst.inProgress:
+        return <Loading />
+
+      case apiStateConst.success:
+        return <p>Hello</p>
+
+      case apiStateConst.failure:
+        return <Failure method={this.getAlbumDetails} />
+
+      default:
+        return null
     }
   }
 
@@ -48,7 +73,9 @@ class Album extends Component {
       <>
         <Header />
         <div className="album-page" data-testid="albumPage">
+          <BackBtn />
           Album
+          {this.renderSuccessView()}
         </div>
       </>
     )

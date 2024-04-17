@@ -1,0 +1,29 @@
+.album-page {
+  background-color: #181818;
+  height: 90vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow: auto;
+  scrollbar-color: dark;
+  scroll-behavior: smooth;
+
+  font-family: 'Assistant';
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .album-page {
+    width: 90%;
+    height: 100vh;
+    position: relative;
+    /* top: 0; */
+    right: 0;
+    left: 10vw;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+}
