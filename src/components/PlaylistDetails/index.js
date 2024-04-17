@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import ReactAudioPlayer from 'react-audio-player'
 
 import './index.css'
 import Header from '../Header'
@@ -62,7 +63,7 @@ class PlaylistDetails extends Component {
     id: item.track.id,
     songName: this.changeName(item.track.name),
     album: this.changeName(item.track.album.name),
-    songImage: item.track.album.images[2].url,
+    songImage: item.track.album.images[0].url,
     artist: this.changeName(item.track.artists[0].name),
     duration: this.convertDuration(item.track.duration_ms),
     previewUrl: item.track.preview_url,
@@ -113,8 +114,8 @@ class PlaylistDetails extends Component {
   renderSuccessView = () => {
     const {playListData, tracks, songData, playSong} = this.state
     const {name, image} = playListData
-    const {songName, songImage, artist} = songData
-    console.log(songData)
+    const {songName, songImage, artist, previewUrl} = songData
+    // console.log(songData)
 
     return (
       <>
@@ -159,11 +160,14 @@ class PlaylistDetails extends Component {
           <div className="playlist-footer">
             <div className="song-header">
               <img src={songImage} alt={songName} className="song-img" />
+
               <div className="playing-song-details">
                 <h5 className="footer-song-name">{songName}</h5>
+
                 <p className="song-artist">{artist}</p>
               </div>
             </div>
+            <ReactAudioPlayer src={previewUrl} autoPlay controls />
           </div>
         )}
       </>
