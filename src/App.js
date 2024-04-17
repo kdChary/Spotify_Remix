@@ -7,6 +7,7 @@ import Home from './components/HomePage'
 import NotFound from './components/NotFound'
 import CategoryPlaylist from './components/GenreAndMoods'
 import PlaylistDetails from './components/PlaylistDetails'
+import Album from './components/AlbumDetails'
 
 // write your code here
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
       component={CategoryPlaylist}
     />
     <SafeRoute exact path="/playlist/:id" component={PlaylistDetails} />
+    <SafeRoute exact path="/album/:id" component={Album} />
     <SafeRoute exact path="/bad-path" component={NotFound} />
     <Redirect to="/bad-path" />
   </Switch>
