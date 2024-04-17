@@ -1,25 +1,69 @@
 .playlist-item {
-  width: 90%;
+  list-style-type: decimal;
+  width: 100%;
   display: flex;
   align-items: center;
   align-self: center;
   /* gap: 33px; */
   justify-content: space-between;
+  color: #ffffff;
+  cursor: pointer;
+}
+.playlist-item-lg {
+  list-style-type: decimal;
+  width: 100%;
+  display: none;
+  align-items: center;
+  align-self: center;
+
+  justify-content: space-between;
+  color: #ffffff;
+  cursor: pointer;
 }
 .songs-data-sm {
   display: block;
 }
-.songs-data-lg {
-  display: none;
+.song-name {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  margin: 0;
 }
+.song-artist {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  color: #9b9b9b;
+  margin: 0;
+}
+.song-details {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+}
+.song-text {
+  text-align: left;
+  width: 23%;
+  margin-right: auto;
+}
+.last {
+  text-align: right;
+  width: 5%;
+}
+
 @media (min-width: 768px) {
   .songs-data-sm {
     display: none;
   }
-  .songs-data-lg {
-    display: flex;
-    justify-content: space-between;
-    width: 60%;
-    text-align: justify;
+
+  .playlist-item {
+    display: none;
   }
+  .playlist-item-lg {
+    display: flex;
+  }
+}
+
+.playlist-item:hover {
+  background-color: #29203b;
 }

@@ -22,13 +22,16 @@
     /* top: 0; */
     right: 0;
     left: 10vw;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
   }
 }
 
 .playlist-header {
-  margin-top: 3vh;
+  margin-top: 1vh;
   display: inline-block;
   text-align: center;
+  height: 40vh;
 }
 .playlist-head-img {
   width: 126px;
@@ -80,9 +83,10 @@
 
     display: flex;
     gap: 13px;
+    margin-bottom: 0;
   }
   .playlist-head-img {
-    width: 190px;
+    width: 150px;
   }
   .playlist-title {
     display: none;
@@ -97,10 +101,107 @@
 
 .songs-list {
   width: 100%;
-  display: block;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 5px;
+  margin-top: 0;
 
+  color: #ffffff;
   overflow: auto;
   scrollbar-color: dark;
   scroll-behavior: smooth;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.song-headings {
+  list-style-type: none;
+  display: none;
+  justify-content: space-between;
+}
+.line {
+  display: none;
+
+  width: 100%;
+  height: 0.7px;
+  border: none;
+  border-top: solid 1px #475569;
+}
+.song-heading {
+  font-family: 'Assistant';
+  font-weight: 500;
+  letter-spacing: 0.7px;
+}
+
+.playlist-footer {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+
+  background-color: #181818;
+  border: solid 1px #181818;
+  border-top: solid 1px #94a3b8;
+  border-radius: 15px 15px 0 0;
+
+  padding: 0 13px;
+  position: fixed;
+  bottom: 1px;
+
+  color: #fff;
+}
+@media (min-width: 768px) {
+  .playlist-footer {
+    width: 90.5%;
+    height: 15vh;
+    margin: 0;
+    padding: 11px;
+  }
+  .song-headings {
+    display: flex;
+  }
+  .line {
+    display: block;
+  }
+}
+.songs-container {
+  width: 100%;
+  padding: 0 5px;
+}
+.song-header {
+  display: flex;
+  gap: 5px;
+  /* border: solid 1px #fff; */
+}
+
+.song-img {
+  display: none;
+  width: 83px;
+  height: 83px;
+}
+.song-artist {
+  font-size: 13px;
+  font-weight: 600;
+  font-style: oblique;
+
+  color: #94a3b8;
+  margin: 2px 0;
+  letter-spacing: 0.6px;
+}
+.footer-song-name {
+  font-size: 17px;
+  font-weight: 600;
+  font-style: oblique;
+
+  color: #ffffff;
+  margin: 2px 0;
+  letter-spacing: 0.6px;
+}
+.playing-song-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+@media (min-width: 768px) {
+  .song-img {
+    display: inline-block;
+  }
 }

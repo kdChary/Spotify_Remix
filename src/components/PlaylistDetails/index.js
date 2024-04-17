@@ -16,14 +16,38 @@ const apiStateConst = {
 }
 
 class PlaylistDetails extends Component {
-  state = {playListData: {}, tracks: [], fetchStatus: apiStateConst.initial}
+  state = {
+    playListData: {},
+    tracks: [],
+    songData: {},
+    playSong: false,
+    fetchStatus: apiStateConst.initial,
+  }
 
   componentDidMount() {
     this.getSpecificPlaylist()
   }
 
+  changeName = val => {
+    const indx = val.indexOf('(')
+    if (indx > 0) {
+      return val.slice(0, indx)
+    }
+    return val
+  }
+
   retry = () => {
     this.getSpecificPlaylist()
+  }
+
+  playSong = id => {
+    const {tracks} = this.state
+
+    const song = tracks.filter(item => item.id === id)
+
+    this.setState({songData: song[0], playSong: true})
+    // console.log(song)
+    // console.log('clicked')
   }
 
   convertDuration = val => {
@@ -34,15 +58,12 @@ class PlaylistDetails extends Component {
     return time
   }
 
-  changeName = val => {
-    const indx = val.indexOf('(')
-    return val.slice(0, indx)
-  }
-
   modifyTracks = item => ({
     id: item.track.id,
-    name: this.changeName(item.track.name),
-    artist: item.track.artists[0].name,
+    songName: this.changeName(item.track.name),
+    album: this.changeName(item.track.album.name),
+    songImage: item.track.album.images[2].url,
+    artist: this.changeName(item.track.artists[0].name),
     duration: this.convertDuration(item.track.duration_ms),
     previewUrl: item.track.preview_url,
     popularity: item.track.popularity,
@@ -69,7 +90,7 @@ class PlaylistDetails extends Component {
       const data = await response.json()
       const modifyData = {
         id: data.id,
-        name: data.name,
+        name: this.changeName(data.name),
         followers: data.followers.total,
         image: data.images[0].url,
         tracks: data.tracks.items.map(track => this.modifyTracks(track)),
@@ -83,15 +104,17 @@ class PlaylistDetails extends Component {
         tracks: songsList,
       })
 
-      console.log(modifyData)
+      //   console.log(data.tracks.items[0].track)
     } else {
       this.setState({fetchStatus: apiStateConst.failure})
     }
   }
 
   renderSuccessView = () => {
-    const {playListData, tracks} = this.state
+    const {playListData, tracks, songData, playSong} = this.state
     const {name, image} = playListData
+    const {songName, songImage, artist} = songData
+    console.log(songData)
 
     return (
       <>
@@ -112,11 +135,37 @@ class PlaylistDetails extends Component {
             <p className="playlist-head-text"> KSD </p>
           </div>
         </div>
-        <ul className="songs-list">
-          {tracks.map(track => (
-            <PlaylistItem key={track.id} songData={track} />
-          ))}
-        </ul>
+
+        <div className="songs-container">
+          <div className="song-headings">
+            <div className="song-heading">Track</div>
+            <div className="song-heading">Album</div>
+            <div className="song-heading">Artist</div>
+            <div className="song-heading">Time</div>
+          </div>
+          <hr className="line" />
+          <ul className="songs-list">
+            {tracks.map(track => (
+              <PlaylistItem
+                key={track.id}
+                songData={track}
+                playSong={this.playSong}
+              />
+            ))}
+          </ul>
+        </div>
+
+        {playSong && (
+          <div className="playlist-footer">
+            <div className="song-header">
+              <img src={songImage} alt={songName} className="song-img" />
+              <div className="playing-song-details">
+                <h5 className="footer-song-name">{songName}</h5>
+                <p className="song-artist">{artist}</p>
+              </div>
+            </div>
+          </div>
+        )}
       </>
     )
   }
