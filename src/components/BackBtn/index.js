@@ -10,7 +10,12 @@ const BackBtn = props => {
   }
 
   return (
-    <button type="button" className="back-btn" onClick={onClickBtn}>
+    <button
+      type="button"
+      className="back-btn"
+      onClick={onClickBtn}
+      data-testid="backBtn"
+    >
       <FaArrowLeft /> Back
     </button>
   )
