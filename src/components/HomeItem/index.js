@@ -23,7 +23,7 @@ const HomeItem = props => {
 
   return (
     <Link to={linkVal} className="link-item">
-      <li className="home-item">
+      <li className="home-item" data-testid="homeItem">
         <img src={imageUrl} alt={altVal} className="item-image" />
         <p className="item-name">{name}</p>
       </li>

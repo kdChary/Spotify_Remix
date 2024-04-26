@@ -55,15 +55,18 @@
   .songs-data-sm {
     display: none;
   }
-
-  .playlist-item {
-    display: none;
-  }
-  .playlist-item-lg {
-    display: flex;
-  }
 }
 
 .playlist-item:hover {
   background-color: #29203b;
+}
+
+/* Media queries */
+@media (max-width: 767px) {
+  .song-text {
+    display: none;
+  }
+  .last {
+    display: none;
+  }
 }

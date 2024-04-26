@@ -56,7 +56,7 @@ class PlaylistDetails extends Component {
     songName: this.changeName(item.track.name),
     album: this.changeName(item.track.album.name),
     songImage: item.track.album.images[0].url,
-    artist: this.changeName(item.track.album.artists[0].name),
+    artist: item.track.artists[0].name,
     duration: item.track.duration_ms,
     addedAt: item.added_at,
     previewUrl: item.track.preview_url,
@@ -98,7 +98,7 @@ class PlaylistDetails extends Component {
         tracks: songsList,
       })
 
-      //   console.log(data)
+      console.log(data)
     } else {
       this.setState({fetchStatus: apiStateConst.failure})
     }
@@ -130,26 +130,32 @@ class PlaylistDetails extends Component {
           </div>
         </div>
 
-        <div className="songs-container">
-          <div className="song-headings" data-testid="songHeadings">
+        <div className="songs-container" data-testid="songsContainer">
+          <div className="song-headings">
             <div>
               <p className="song-heading">Track</p>
             </div>
+
             <div>
               <p className="song-heading">Album</p>
             </div>
+
             <div>
               <p className="song-heading">Artist</p>
             </div>
+
             <div>
               <p className="song-heading">Time</p>
             </div>
+
             <div>
               <p className="song-heading">Time</p>
             </div>
           </div>
+
           <hr className="line" />
-          <ul className="songs-list">
+
+          <ul className="songs-list" data-testid="songsList">
             {tracks.map(track => (
               <PlaylistItem
                 key={track.id}

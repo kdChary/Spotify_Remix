@@ -32,10 +32,6 @@ const PlaylistItem = props => {
           <p className="song-name">{songName}</p>
           <p className="song-artist">{artist}</p>
         </div>
-        <p className="song-details">{convertDuration(duration)}</p>
-      </li>
-
-      <li className="playlist-item-lg" onClick={onClickSong}>
         <div className="song-text">
           <p className="song-details">{songName}</p>
         </div>
@@ -52,7 +48,15 @@ const PlaylistItem = props => {
         <div className="last">
           <p className="song-details">{convertDuration(duration)}</p>
         </div>
+
+        <p className="song-details">{convertDuration(duration)}</p>
       </li>
+
+      {/* <li
+        className="playlist-item-lg"
+        onClick={onClickSong}
+        data-testid="playlistItem"
+      ></li> */}
     </>
   )
 }

@@ -71,7 +71,7 @@ class Categories extends Component {
     const {playList} = this.state
 
     return (
-      <>
+      <div className="categories" data-testid="categories">
         <h5 className="playlist-heading">Genres & Moods</h5>
 
         <ul className="editors-pick">
@@ -79,7 +79,7 @@ class Categories extends Component {
             <HomeItem key={item.id} playListData={item} type="category" />
           ))}
         </ul>
-      </>
+      </div>
     )
   }
 
